@@ -13,8 +13,7 @@
 
   "content_scripts": [
     {
-      "js": ["scripts/content.js",
-             "scripts/tr.js"],
+      "js": ["scripts/selection.js"],
       "matches": [
         "https://developer.chrome.com/docs/extensions/*",
         "https://developer.chrome.com/docs/webstore/*",
@@ -30,5 +29,15 @@
 
   "background": {
     "service_worker": "scripts/sample.js"
+  },
+
+  "action": {
+    "default_icon": {                
+      "16": "images/icon-16.png",     
+      "24": "images/icon-32.png",     
+      "32": "images/icon-32.png"      
+    },
+    "default_title": "popup",  
+    "default_popup": "popup.html"    
   }
 }

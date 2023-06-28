@@ -1,5 +1,3 @@
-const highlightColor = "rgb(213, 234, 255)";
-
 const template = `
   <template id="highlightTemplate">
     <span class="highlight" style="background-color: ${highlightColor}; display: inline"></span>
@@ -32,60 +30,3 @@ const styled = ({ display = "none", left = 0, top = 0 }) => `
     fill: ${highlightColor};
   }
 `;
-
-class MediumHighlighter extends HTMLElement {
-  get markerPosition() {
-    return JSON.parse(this.getAttribute("markerPosition") || "{}");
-  }
-
-  get styleElement() {
-    return this.shadowRoot.querySelector("style");
-  }
-
-  get highlightTemplate() {
-    return this.shadowRoot.getElementById("highlightTemplate");
-  }
-
-  static get observedAttributes() {
-    return ["markerPosition"];
-  }
-
-  constructor() {
-    super();
-    this.render();
-  }
-
-  render() {
-    this.attachShadow({ mode: "open" });
-    const style = document.createElement("style");
-    style.textContent = styled({});
-    this.shadowRoot.appendChild(style);
-    this.shadowRoot.innerHTML += template;
-    this.shadowRoot
-      .getElementById("mediumHighlighter")
-      .addEventListener("click", () => this.highlightSelection());
-  }
-
-  attributeChangedCallback(name, oldValue, newValue) {
-    if (name === "markerPosition") {
-      this.styleElement.textContent = styled(this.markerPosition);
-    }
-  }
-
-  highlightSelection() {
-    var userSelection = window.getSelection();
-    for (let i = 0; i < userSelection.rangeCount; i++) {
-      this.highlightRange(userSelection.getRangeAt(i));
-    }
-    window.getSelection().empty();
-  }
-
-  highlightRange(range) {
-    const clone =
-      this.highlightTemplate.cloneNode(true).content.firstElementChild;
-    clone.appendChild(range.extractContents());
-    range.insertNode(clone);
-  }
-}
-
-window.customElements.define("medium-highlighter", MediumHighlighter);
