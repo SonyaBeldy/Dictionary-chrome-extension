@@ -38,6 +38,6 @@
       "32": "images/icon-32.png"      
     },
     "default_title": "popup",  
-    "default_popup": "popup.html"    
+    "default_popup": "html/popup.html"    
   }
 }
