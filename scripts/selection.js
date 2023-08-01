@@ -1,34 +1,58 @@
-var square = document.createElement("div");
-// square.style = "z-index: 999; position: absolute; background: red; width: 100px; height: 100px; display: block; top: 0; left: 0";
+
+
+const styled = (display, left, top) => 
+    `z-index: 999; 
+    position: fixed; 
+    background: white; 
+    border: 1.6px solid #0000002b; 
+    border-radius: 8px;
+    padding: 10px;
+    filter: drop-shadow(0 0 0.2rem #0000002b);
+    display: ${display}; 
+    top: ${top}px; 
+    left: ${left}px`; //вернет эту строку
+
+
+
+var square = document.createElement("square");
+square.setAttribute("id", "inputForm");
 
 square.innerHTML = `<form>
-    <input type="text" value="Write translation..." name="translate" id="translation">
+    <input type="text" value="Write translation..." name="translate" id="translation" id="input">
     <input type="submit" value="Save">
 </form>`
-
-square.addEventListener("mousedown", (ev) => {
-    ev.stopPropagation();
-    console.log("hello click");
-    console.log(ev);
-}, {capture: false});
-
-
-// square.addEventListener("mouseup", (ev) => {
-//     console.log("hello click");
-//     console.log(ev);
-//     ev.stopPropagation();
-// }, false);
-
-// square.addEventListener("click", (ev) => {
-//     console.log("hello click");
-//     console.log(ev);
-//     ev.stopPropagation();
-// }, false);
+var inputText = document.createElement("input");
+inputText.setAttribute("type", "text");
+inputText.setAttribute("id", "transation");
+inputText.setAttribute("placeholder", "Enter your initials");
+square.appendChild(inputText);
+// square.style = styled("none", 0, 0);
+// square.style = "z-index: 999; position: absolute; background: red; width: 100px; height: 100px; display: block; top: 0; left: 0";
 
 document.body.appendChild(square);
 
-// var input = document.createElement("input");
-// square.appendChild(input);
+
+square.addEventListener("mousedown", (ev) => {
+    // ev.stopPropagation();
+    // ev.preventDefault();
+
+    console.log("hello click");
+    console.log(ev);
+    ev.stopImmediatePropagation();
+    inputText.disabled = false;
+    // ev.preventDefault()
+}, {capture: false});
+
+inputText.addEventListener("mousedown", (ev) => {
+    // ev.stopPropagation();
+    // ev.preventDefault();
+    
+    console.log("input");
+    console.log(ev);
+    ev.stopImmediatePropagation();
+    ev.preventDefault()
+}, {capture: false});
+
 
 
 document.addEventListener("selectionchange", () => {
@@ -46,17 +70,8 @@ document.addEventListener("selectionchange", () => {
     }    
 });
 
-const styled = (display, left, top) => 
-    `z-index: 999; 
-    position: fixed; 
-    background: white; 
-    border: 1.6px solid #0000002b; 
-    border-radius: 8px;
-    padding: 10px;
-    filter: drop-shadow(0 0 0.2rem #0000002b);
-    display: ${display}; 
-    top: ${top}px; 
-    left: ${left}px`; //вернет эту строку
+
+
     
 
 

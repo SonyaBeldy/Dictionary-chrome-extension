@@ -26,6 +26,8 @@ async function alertAfterClick(info, tab) {
     } )
 
     var result = await response.json();
+
+    console.log(result);
     
     chrome.notifications.create({
         type: 'basic',

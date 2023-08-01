@@ -8,9 +8,31 @@
     <script defer src="../scripts/script.js"></script>
 </head>
 <body>
-    <h3>Add to Dictionary</h3>  
-    <input type="text" placeholder="eng..." id="eng-input" class="form-input">
-    <input type="text" placeholder="ru..." id="ru-input" class="form-input">
-    <button class="save-button" id="save-btn">Save</button>
+    <div class="form-container">
+        <h3 class="title-text">Add to Dictionary</h3>  
+        <div class="form-input-container">
+            <div class="square">
+                <span class="language-title">en</span>
+            </div>
+            <input type="text" placeholder="" id="eng-input" class="form-input">
+        </div>
+        <div class="form-input-container">
+            <div class="square">
+                <span class="language-title">ru</span>
+            </div>
+            <input type="text" placeholder="" id="ru-input" class="form-input">
+        </div>
+        <button class="save-button" id="save-btn">Save</button>
+    </div>
+    
+    <div class="load-div" id="load-div">
+        <div class="loader" id="loader"></div>    
+    </div>
+
+    <footer>
+        <a class="footer-text" href="http://localhost:8081/dictionary">Sonya's dictionary</a>
+    </footer>
+
 </body>
+
 </html>

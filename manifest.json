@@ -1,8 +1,8 @@
 {
     "manifest_version": 3,
-    "name": "Reading time",
+    "name": "Dictionary",
     "version": "1.0",
-    "description": "Add the reading time to Chrome Extension documentation articles",
+    "description": "Adding a translation in the Dicrionary",
 
       "icons": {
     "16": "images/icon-16.png",
@@ -25,7 +25,8 @@
   "permissions": [
     "contextMenus", "notifications"
   ],
-  "host_permissions": ["http://localhost:8080/translations/add"],
+  "host_permissions": ["http://localhost:8080/translations/add",
+                        "http://192.168.1.34:8080/translations/add"],
 
   "background": {
     "service_worker": "scripts/sample.js"

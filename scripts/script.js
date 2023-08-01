@@ -9,12 +9,28 @@ save_btn.addEventListener("click", (ev) => {
         originText: eng_input,
         translatedText: ru_input
     }
+    
+    document.getElementById("load-div").style.display = "flex";
 
     fetch("http://localhost:8080/translations/add", {
         method: "POST",
         headers: {
-            'content-type': 'aplication/json'    
+            'content-type': 'application/json'    
         },
         body: JSON.stringify(translation)
-    }).then((value) => console.log(value))
+    }).then((value) => checkSuccess(value.status))
+
 })
+
+function checkSuccess(status) {
+    
+    console.log(status);
+    if(status == 200) {
+        setTimeout(() => {
+
+            document.getElementById("load-div").style.display = "none";
+        }, 1200)
+        document.getElementById("eng-input").value = "";
+        document.getElementById("ru-input").value = "";
+    }
+}
